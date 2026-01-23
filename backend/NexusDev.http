@@ -1,0 +1,6 @@
+@NexusDev_HostAddress = http://localhost:5237
+
+GET {{NexusDev_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
