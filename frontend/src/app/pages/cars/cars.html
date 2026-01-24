@@ -1,0 +1,34 @@
+<h3>Add Car</h3>
+
+<form (ngSubmit)="addCar()">
+    <input type="text" placeholder="Make" 
+    [(ngModel)]="newCar.make" name="make required"/>
+
+    <input type="text" placeholder="Model" 
+    [(ngModel)]="newCar.model" name="model" required />
+
+    <input type="number" placeholder="Year" 
+    [(ngModel)]="newCar.year" name="Year" required />
+
+    <button type="submit">Add</button>
+
+</form>
+
+<hr>
+
+<h2>Cars</h2>
+
+@if (cars.length > 0){
+    <ul>
+        @for (car of cars; track car.id){
+            <li>
+                {{car.make}} {{car.model}} ({{car.year}})
+            </li>
+        }
+    </ul>
+}   @else {<p>No cars found.</p>}
+
+
+
+ <button>The Fuck</button>
+
