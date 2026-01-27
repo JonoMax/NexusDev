@@ -8,7 +8,12 @@ namespace NexusDev.Controllers
     [Route("api/[controller]")]
     public class CarController : ControllerBase
     {
-        private readonly CarRepository _repo = new();
+        private readonly ICarRepository _repo;
+
+        public CarController(ICarRepository repo)
+        {
+            _repo = repo;
+        }
 
         [HttpGet] public List<Car> Get() => _repo.GetAll();
         [HttpGet("{id}")] public Car? Get(int id) => _repo.GetById(id);

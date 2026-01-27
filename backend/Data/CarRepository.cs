@@ -2,7 +2,7 @@
 
 namespace NexusDev.Data
 {
-    public class CarRepository
+    public class CarRepository: ICarRepository
     {
         private static readonly List<Car> _cars = new();
         private static int _nextId = 1;
