@@ -12,12 +12,23 @@ export class CarService {
   private readonly apiUrl = 'https://localhost:7146/api/Car'
 
   getCars(){
-    console.log("What the actual fuck?")
     return this.http.get<Car[]>(this.apiUrl);
   }
 
   addCar(car: Car) {
     return this.http.post<Car>(this.apiUrl, car);
+  }
+
+  updateCar(car: Car){
+    return this.http.put(`${this.apiUrl}/${car.id}`, car)
+  }
+
+  deleteCar(id: number){
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  searchById(id: number){
+    return this.http.post<Car>(this.apiUrl, id)
   }
   
 }
