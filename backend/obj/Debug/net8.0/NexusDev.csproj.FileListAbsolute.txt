@@ -94,3 +94,4 @@ E:\git\NexusDev\backend\obj\Debug\net8.0\refint\NexusDev.dll
 E:\git\NexusDev\backend\obj\Debug\net8.0\NexusDev.pdb
 E:\git\NexusDev\backend\obj\Debug\net8.0\NexusDev.genruntimeconfig.cache
 E:\git\NexusDev\backend\obj\Debug\net8.0\ref\NexusDev.dll
+E:\git\NexusDev\backend\obj\Debug\net8.0\NexusDev.sourcelink.json

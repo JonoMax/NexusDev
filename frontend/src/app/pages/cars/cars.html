@@ -1,0 +1,64 @@
+<h3>Add Car</h3>
+
+<form (ngSubmit)="addCar()">
+    <input type="text" placeholder="Make" 
+    [(ngModel)]="newCar.make" name="make required"/>
+
+    <input type="text" placeholder="Model" 
+    [(ngModel)]="newCar.model" name="model" required />
+
+    <input type="number" placeholder="Year" 
+    [(ngModel)]="newCar.year" name="Year" required />
+
+    <button type="submit">Add</button>
+
+</form>
+
+<hr>
+
+<h2>Cars</h2>
+
+@if (cars.length > 0){
+    <ul>
+        @for (car of cars; track car.id){
+            <li>
+                {{car.make}} {{car.model}} ({{car.year}})
+                <button (click)="editCar(car)">Edit</button>
+                <button (click)="deleteCar(car.id)">Delete</button>
+            </li>
+        }
+    </ul>
+}   @else {<p>No cars found.</p>}
+
+
+<hr>
+
+@if(editingCar){
+    <h3>Edit Car</h3>
+
+    <form (ngSubmit)="saveCar()">
+        <input type="text" placeholder="Make" 
+        [(ngModel)]="editingCar.make" name="editMake" required/>
+
+        <input type="text" placeholder="Model" 
+        [(ngModel)]="editingCar.model" name="model" required />
+
+        <input type="number" placeholder="Year" 
+        [(ngModel)]="newCar.year" name="Year" required />
+        
+        <button type="submit">Save</button>
+        <button type="button" (click)="editingCar = null">Cancel</button>
+    </form>
+}
+
+
+<h3>Search Car By ID</h3>
+
+<!-- <form (ngSubmit)="findCarById()">
+
+    <input type="number" placeholder="Id" 
+    [(ngModel)]="newCar.make" name="make" required/>
+
+    <button type="submit">Find</button>
+
+</form> -->
