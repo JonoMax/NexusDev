@@ -1,0 +1,104 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\git\\NexusDev\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{94B688A9-4F7E-4A39-B799-6E3EE30B8D2B}|NexusDev.csproj|c:\\git\\nexusdev\\backend\\controllers\\carcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B688A9-4F7E-4A39-B799-6E3EE30B8D2B}|NexusDev.csproj|solutionrelative:controllers\\carcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94B688A9-4F7E-4A39-B799-6E3EE30B8D2B}|NexusDev.csproj|c:\\git\\nexusdev\\backend\\data\\carrepositoryef.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B688A9-4F7E-4A39-B799-6E3EE30B8D2B}|NexusDev.csproj|solutionrelative:data\\carrepositoryef.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94B688A9-4F7E-4A39-B799-6E3EE30B8D2B}|NexusDev.csproj|c:\\git\\nexusdev\\backend\\data\\icarrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B688A9-4F7E-4A39-B799-6E3EE30B8D2B}|NexusDev.csproj|solutionrelative:data\\icarrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94B688A9-4F7E-4A39-B799-6E3EE30B8D2B}|NexusDev.csproj|c:\\git\\nexusdev\\backend\\tests\\carrepositoryeftests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B688A9-4F7E-4A39-B799-6E3EE30B8D2B}|NexusDev.csproj|solutionrelative:tests\\carrepositoryeftests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94B688A9-4F7E-4A39-B799-6E3EE30B8D2B}|NexusDev.csproj|c:\\git\\nexusdev\\backend\\tests\\carrepositorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B688A9-4F7E-4A39-B799-6E3EE30B8D2B}|NexusDev.csproj|solutionrelative:tests\\carrepositorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CarController.cs",
+              "DocumentMoniker": "C:\\git\\NexusDev\\backend\\Controllers\\CarController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CarController.cs",
+              "ToolTip": "C:\\git\\NexusDev\\backend\\Controllers\\CarController.cs",
+              "RelativeToolTip": "Controllers\\CarController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T15:18:42.314Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CarRepositoryEF.cs",
+              "DocumentMoniker": "C:\\git\\NexusDev\\backend\\Data\\CarRepositoryEF.cs",
+              "RelativeDocumentMoniker": "Data\\CarRepositoryEF.cs",
+              "ToolTip": "C:\\git\\NexusDev\\backend\\Data\\CarRepositoryEF.cs",
+              "RelativeToolTip": "Data\\CarRepositoryEF.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T15:18:42.267Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ICarRepository.cs",
+              "DocumentMoniker": "C:\\git\\NexusDev\\backend\\Data\\ICarRepository.cs",
+              "RelativeDocumentMoniker": "Data\\ICarRepository.cs",
+              "ToolTip": "C:\\git\\NexusDev\\backend\\Data\\ICarRepository.cs",
+              "RelativeToolTip": "Data\\ICarRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T15:18:39.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CarRepositoryTests.cs",
+              "DocumentMoniker": "C:\\git\\NexusDev\\backend\\Tests\\CarRepositoryTests.cs",
+              "RelativeDocumentMoniker": "Tests\\CarRepositoryTests.cs",
+              "ToolTip": "C:\\git\\NexusDev\\backend\\Tests\\CarRepositoryTests.cs",
+              "RelativeToolTip": "Tests\\CarRepositoryTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T11:46:42.855Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CarRepositoryEFTests.cs",
+              "DocumentMoniker": "C:\\git\\NexusDev\\backend\\Tests\\CarRepositoryEFTests.cs",
+              "RelativeDocumentMoniker": "Tests\\CarRepositoryEFTests.cs",
+              "ToolTip": "C:\\git\\NexusDev\\backend\\Tests\\CarRepositoryEFTests.cs",
+              "RelativeToolTip": "Tests\\CarRepositoryEFTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T11:46:40.909Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\git\\NexusDev\\backend\\NexusDev.csproj": {}
+    "C:\\git\\NexusDev\\backend\\NexusDev.csproj": {}
   },
   "projects": {
-    "E:\\git\\NexusDev\\backend\\NexusDev.csproj": {
+    "C:\\git\\NexusDev\\backend\\NexusDev.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\git\\NexusDev\\backend\\NexusDev.csproj",
+        "projectUniqueName": "C:\\git\\NexusDev\\backend\\NexusDev.csproj",
         "projectName": "NexusDev",
-        "projectPath": "E:\\git\\NexusDev\\backend\\NexusDev.csproj",
-        "packagesPath": "C:\\Users\\Jax\\.nuget\\packages\\",
-        "outputPath": "E:\\git\\NexusDev\\backend\\obj\\",
+        "projectPath": "C:\\git\\NexusDev\\backend\\NexusDev.csproj",
+        "packagesPath": "C:\\Users\\jonom\\.nuget\\packages\\",
+        "outputPath": "C:\\git\\NexusDev\\backend\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Jax\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jonom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,13 +43,18 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.23, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
               "version": "[8.0.23, )"
             },
@@ -66,6 +75,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
+            },
+            "xunit.v3": {
+              "target": "Package",
+              "version": "[3.2.2, )"
             }
           },
           "imports": [
@@ -87,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.411/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

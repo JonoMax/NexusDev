@@ -12,36 +12,36 @@ namespace NexusDev.Data
             _context = context;
         }
 
-        public List<Car> GetAll()
+        public async Task<List<Car>> GetAllAsync()
         {
-            return _context.Cars.ToList();
+            return await _context.Cars.ToListAsync();
         }
 
-        public Car? GetById(int id)
+        public async Task<Car?> GetByIdAsync(int id)
         {
-            return _context.Cars.FirstOrDefault(c => c.Id == id);
+            return await _context.Cars.FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public Car Add(Car car)
+        public async Task<Car> AddAsync(Car car)
         {
             _context.Cars.Add(car);
             _context.SaveChanges();
             return car;
         }
 
-        public void Update(Car car)
+        public async Task UpdateAsync(Car car)
         {
             _context.Cars.Update(car);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var car = _context.Cars.FirstOrDefault(c => c.Id == id);
             if (car == null) return;
 
             _context.Cars.Remove(car);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
     }
