@@ -1,6 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 using NexusDev.Data;
 using NexusDev.Models;
-using System.Reflection;
 using Xunit;
 
 namespace NexusDev.Tests
@@ -34,37 +38,38 @@ namespace NexusDev.Tests
         }
 
         [Fact]
-        public void Add_AssignsIdAndReturnsCar()
+        public async Task Add_AssignsIdAndReturnsCar()
         {
             var car = new Car { Make = "Toyota", Model = "Corolla", Year = 2020, Price = 25000m };
 
-            var added = _repo.Add(car);
+            var added = await _repo.AddAsync(car);
 
             Assert.NotNull(added);
-            Assert.Equal(1, added.Id);
-            Assert.Contains(added, _repo.GetAll());
+            Assert.NotEqual(0, added.Id);
+            var all = await _repo.GetAllAsync();
+            Assert.Contains(all, c => c.Id == added.Id);
         }
 
         [Fact]
-        public void GetAll_ReturnsAllCars()
+        public async Task GetAll_ReturnsAllCars()
         {
-            var car1 = _repo.Add(new Car { Make = "A", Model = "M1", Year = 2000, Price = 1m });
-            var car2 = _repo.Add(new Car { Make = "B", Model = "M2", Year = 2001, Price = 2m });
+            var car1 = await _repo.AddAsync(new Car { Make = "A", Model = "M1", Year = 2000, Price = 1m });
+            var car2 = await _repo.AddAsync(new Car { Make = "B", Model = "M2", Year = 2001, Price = 2m });
 
-            var all = _repo.GetAll();
+            var all = await _repo.GetAllAsync();
 
             Assert.Equal(2, all.Count);
-            Assert.Contains(car1, all);
-            Assert.Contains(car2, all);
+            Assert.Contains(all, c => c.Id == car1.Id);
+            Assert.Contains(all, c => c.Id == car2.Id);
         }
 
         [Fact]
-        public void GetById_ReturnsCorrectOrNull()
+        public async Task GetById_ReturnsCorrectOrNull()
         {
-            var car = _repo.Add(new Car { Make = "X", Model = "Y", Year = 2010, Price = 100m });
+            var car = await _repo.AddAsync(new Car { Make = "X", Model = "Y", Year = 2010, Price = 100m });
 
-            var found = _repo.GetById(car.Id);
-            var notFound = _repo.GetById(999);
+            var found = await _repo.GetByIdAsync(car.Id);
+            var notFound = await _repo.GetByIdAsync(999);
 
             Assert.NotNull(found);
             Assert.Equal(car.Id, found!.Id);
@@ -72,29 +77,32 @@ namespace NexusDev.Tests
         }
 
         [Fact]
-        public void Update_ReplacesExistingCar()
+        public async Task Update_ReplacesExistingCar()
         {
-            var car = _repo.Add(new Car { Make = "Old", Model = "Model", Year = 1999, Price = 10m });
+            var car = await _repo.AddAsync(new Car { Make = "Old", Model = "Model", Year = 1999, Price = 10m });
 
             car.Make = "New";
             car.Price = 20m;
-            _repo.Update(car);
+            await _repo.UpdateAsync(car);
 
-            var updated = _repo.GetById(car.Id);
+            var updated = await _repo.GetByIdAsync(car.Id);
             Assert.NotNull(updated);
             Assert.Equal("New", updated!.Make);
             Assert.Equal(20m, updated.Price);
         }
 
         [Fact]
-        public void Delete_RemovesCar()
+        public async Task Delete_RemovesCar()
         {
-            var car = _repo.Add(new Car { Make = "ToDelete", Model = "D", Year = 2005, Price = 5m });
+            var car = await _repo.AddAsync(new Car { Make = "ToDelete", Model = "D", Year = 2005, Price = 5m });
 
-            _repo.Delete(car.Id);
+            await _repo.DeleteAsync(car.Id);
 
-            Assert.Null(_repo.GetById(car.Id));
-            Assert.Empty(_repo.GetAll());
+            var found = await _repo.GetByIdAsync(car.Id);
+            var all = await _repo.GetAllAsync();
+
+            Assert.Null(found);
+            Assert.Empty(all);
         }
 
         [Fact]

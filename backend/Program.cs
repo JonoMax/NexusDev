@@ -41,6 +41,8 @@ app.UseCors("AllowAngular");
 
 app.UseAuthorization();
 
+app.UseExceptionHandler("/error");
+
 app.MapControllers();
 
 app.Run();

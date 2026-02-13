@@ -35,13 +35,14 @@ namespace NexusDev.Data
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var car = _context.Cars.FirstOrDefault(c => c.Id == id);
-            if (car == null) return;
+            if (car == null) return false;
 
             _context.Cars.Remove(car);
             await _context.SaveChangesAsync();
+            return true;
         }
 
     }

@@ -8,6 +8,6 @@ namespace NexusDev.Data
         Task<Car?> GetByIdAsync(int id);
         Task<Car> AddAsync(Car car);
         Task UpdateAsync(Car car);
-        Task DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
     }
 }

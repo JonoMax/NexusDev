@@ -16,11 +16,33 @@ namespace NexusDev.Controllers
             _repo = repo;
         }
 
-        [HttpGet] 
-        public async Task<List<Car>> Get() => await _repo.GetAllAsync();
+        [HttpGet]
+        public async Task<ActionResult<List<CarDto>>> Get() /*=> await _repo.GetAllAsync();*/
+        {
+            var cars = await _repo.GetAllAsync();
+           var carsDto = cars.Select(c => new CarDto
+            {
+                Id = c.Id,
+                Make = c.Make,
+                Model = c.Model,
+                Year = c.Year,
+                Price = c.Price
+            }).ToList();
 
-        [HttpGet("{id}")] 
-        public async Task<Car?> Get(int id) => await _repo.GetByIdAsync(id);
+            return Ok(carsDto);
+        }
+
+        [HttpGet("{id}")]
+        /*public async Task<Car?> Get(int id) => await _repo.GetByIdAsync(id);*/
+        public async Task<ActionResult<CarDto>> Get(int id)
+        {
+            var car = await _repo.GetByIdAsync(id);
+
+            if (car == null)
+                return NotFound(new { message = $"Car with id {id} not found" });
+                
+            return Ok(car);
+        }
 
         [HttpPost] 
         public async Task<CarDto> Post(CreateCarDto dto)
@@ -29,7 +51,8 @@ namespace NexusDev.Controllers
             {
                 Make = dto.Make,
                 Model = dto.Model,
-                Year = dto.Year
+                Year = dto.Year,
+                Price = dto.Price
             };
 
             var savedCar = await _repo.AddAsync(car);
@@ -39,14 +62,36 @@ namespace NexusDev.Controllers
                 Id = savedCar.Id,
                 Make = savedCar.Make,
                 Model = savedCar.Model,
-                Year = savedCar.Year
+                Year = savedCar.Year,
+                Price = savedCar.Price
             };
-        } 
+        }
 
-        [HttpPut("{id}")] 
-        public void Put(int id, [FromBody] Car car) { car.Id = id; _repo.UpdateAsync(car); }
+        [HttpPut("{id}")]
+        /*public void Put(int id, [FromBody] Car car) { car.Id = id; _repo.UpdateAsync(car); }*/
+        public async Task<IActionResult> Put(int id, UpdateCarDto dto)
+        {
+            var car = await _repo.GetByIdAsync(id);
+            if (car == null) 
+                return NotFound(new { message = $"Car with id {id} not found" });
 
-        [HttpDelete("{id}")] 
-        public void Delete(int id) => _repo.DeleteAsync(id);
+            car.Make = dto.Make;
+            car.Model = dto.Model;
+            car.Price = dto.Price;
+
+            await _repo.UpdateAsync(car);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        /*public void Delete(int id) => _repo.DeleteAsync(id);*/
+        public async Task<IActionResult> Delete(int id)
+        {
+           var deleted = await _repo.DeleteAsync(id);
+            if(!deleted)
+                return NotFound(new { message = $"Car with id {id} not found" });
+            
+            return NoContent();
+        }
     }
 }

@@ -1,30 +1,36 @@
-<h3>Add Car</h3>
+<div class="cars-container">  
+  <h3>Add Car</h3>
 
-<form (ngSubmit)="addCar()">
-    <input type="text" placeholder="Make" 
-    [(ngModel)]="newCar.make" name="make required"/>
+  <form (ngSubmit)="addCar()">
+      <input type="text" placeholder="Make" 
+      [(ngModel)]="newCar.make" name="make required"/>
 
-    <input type="text" placeholder="Model" 
-    [(ngModel)]="newCar.model" name="model" required />
+      <input type="text" placeholder="Model" 
+      [(ngModel)]="newCar.model" name="model" required />
 
-    <input type="number" placeholder="Year" 
-    [(ngModel)]="newCar.year" name="Year" required />
+      <input type="number" placeholder="Year" 
+      [(ngModel)]="newCar.year" name="Year" required />
 
-    <button type="submit">Add</button>
+      <input type="number" placeholder="Price" 
+      [(ngModel)]="newCar.price" name="Price" required />
 
-</form>
+      <button type="submit">Add Car</button>
+
+  </form>
 
 <hr>
 
-<h2>Cars</h2>
+<h3>Cars</h3>
 
 @if (cars.length > 0){
     <ul>
         @for (car of cars; track car.id){
             <li>
-                {{car.make}} {{car.model}} ({{car.year}})
-                <button (click)="editCar(car)">Edit</button>
-                <button (click)="deleteCar(car.id)">Delete</button>
+                <span>{{car.make}} {{car.model}} ({{car.year}})</span>
+                <div class="button-group">
+                  <button (click)="editCar(car)">Edit</button>
+                  <button (click)="deleteCar(car.id)">Delete</button>
+                </div>
             </li>
         }
     </ul>
@@ -44,7 +50,10 @@
         [(ngModel)]="editingCar.model" name="model" required />
 
         <input type="number" placeholder="Year" 
-        [(ngModel)]="newCar.year" name="Year" required />
+        [(ngModel)]="editingCar.year" name="Year" required />
+
+        <input type="number" placeholder="Price" 
+        [(ngModel)]="editingCar.price" name="Price" required />
         
         <button type="submit">Save</button>
         <button type="button" (click)="editingCar = null">Cancel</button>
@@ -62,3 +71,4 @@
     <button type="submit">Find</button>
 
 </form> -->
+</div>

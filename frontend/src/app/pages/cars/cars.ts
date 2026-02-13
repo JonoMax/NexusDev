@@ -21,7 +21,8 @@ export class Cars implements OnInit{
     id: 0,
     make: '',
     model: '',
-    year: new Date().getFullYear()
+    year: new Date().getFullYear(),
+    price: 0
   }
 
   Id: number = 0;
@@ -47,7 +48,8 @@ export class Cars implements OnInit{
         id: 0,
         make: '',
         model: '',
-        year: new Date().getFullYear()
+        year: new Date().getFullYear(),
+        price: 0
       };
     });
   }

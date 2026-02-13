@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[NexusDev.Models.Car, NexusDev, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[NexusDev.Dtos.CarDto, NexusDev, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -28,14 +28,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "car",
-        "Type": "NexusDev.Models.Car",
+        "Name": "dto",
+        "Type": "NexusDev.Dtos.CreateCarDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "NexusDev.Models.Car",
+        "Type": "NexusDev.Dtos.CarDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -61,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "NexusDev.Models.Car",
+        "Type": "NexusDev.Dtos.CarDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -85,18 +85,12 @@
         "IsRequired": true
       },
       {
-        "Name": "car",
-        "Type": "NexusDev.Models.Car",
+        "Name": "dto",
+        "Type": "NexusDev.Dtos.UpdateCarDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "NexusDev.Controllers.CarController",
@@ -112,12 +106,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   }
 ]
