@@ -21,7 +21,7 @@
   },
   {
     "ContainingType": "NexusDev.Controllers.CarController",
-    "Method": "Post",
+    "Method": "Create",
     "RelativePath": "api/Car",
     "HttpMethod": "POST",
     "IsController": true,
@@ -47,7 +47,7 @@
   },
   {
     "ContainingType": "NexusDev.Controllers.CarController",
-    "Method": "Get",
+    "Method": "GetById",
     "RelativePath": "api/Car/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -73,7 +73,7 @@
   },
   {
     "ContainingType": "NexusDev.Controllers.CarController",
-    "Method": "Put",
+    "Method": "Update",
     "RelativePath": "api/Car/{id}",
     "HttpMethod": "PUT",
     "IsController": true,

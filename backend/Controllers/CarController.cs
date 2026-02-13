@@ -19,7 +19,8 @@ namespace NexusDev.Controllers
         [HttpGet]
         public async Task<ActionResult<List<CarDto>>> Get() /*=> await _repo.GetAllAsync();*/
         {
-            var cars = await _repo.GetAllAsync();
+           var cars = await _repo.GetAllAsync();
+
            var carsDto = cars.Select(c => new CarDto
             {
                 Id = c.Id,
@@ -34,18 +35,27 @@ namespace NexusDev.Controllers
 
         [HttpGet("{id}")]
         /*public async Task<Car?> Get(int id) => await _repo.GetByIdAsync(id);*/
-        public async Task<ActionResult<CarDto>> Get(int id)
+        public async Task<ActionResult<CarDto>> GetById(int id)
         {
             var car = await _repo.GetByIdAsync(id);
 
             if (car == null)
-                return NotFound(new { message = $"Car with id {id} not found" });
-                
-            return Ok(car);
+                return NotFound();
+
+            var carDto = new CarDto
+            {
+                Id = car.Id,
+                Make = car.Make,
+                Model = car.Model,
+                Year = car.Year,
+                Price = car.Price
+            };
+
+            return Ok(carDto);
         }
 
         [HttpPost] 
-        public async Task<CarDto> Post(CreateCarDto dto)
+        public async Task<ActionResult<CarDto>> Create(CreateCarDto dto)
         {
             var car = new Car
             {
@@ -57,7 +67,7 @@ namespace NexusDev.Controllers
 
             var savedCar = await _repo.AddAsync(car);
 
-            return new CarDto
+            var carDto = new CarDto
             {
                 Id = savedCar.Id,
                 Make = savedCar.Make,
@@ -65,21 +75,25 @@ namespace NexusDev.Controllers
                 Year = savedCar.Year,
                 Price = savedCar.Price
             };
+
+            return CreatedAtAction(nameof(GetById), new { id = carDto.Id }, carDto);
         }
 
         [HttpPut("{id}")]
         /*public void Put(int id, [FromBody] Car car) { car.Id = id; _repo.UpdateAsync(car); }*/
-        public async Task<IActionResult> Put(int id, UpdateCarDto dto)
+        public async Task<IActionResult> Update(int id, UpdateCarDto dto)
         {
-            var car = await _repo.GetByIdAsync(id);
-            if (car == null) 
+            var existingCar = await _repo.GetByIdAsync(id);
+
+            if (existingCar == null) 
                 return NotFound(new { message = $"Car with id {id} not found" });
 
-            car.Make = dto.Make;
-            car.Model = dto.Model;
-            car.Price = dto.Price;
+            existingCar.Make = dto.Make;
+            existingCar.Model = dto.Model;
+            existingCar.Price = dto.Price;
 
-            await _repo.UpdateAsync(car);
+            await _repo.UpdateAsync(existingCar);
+
             return NoContent();
         }
 
@@ -88,6 +102,7 @@ namespace NexusDev.Controllers
         public async Task<IActionResult> Delete(int id)
         {
            var deleted = await _repo.DeleteAsync(id);
+
             if(!deleted)
                 return NotFound(new { message = $"Car with id {id} not found" });
             
