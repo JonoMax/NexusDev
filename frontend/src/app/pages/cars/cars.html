@@ -1,69 +1,114 @@
-<div class="cars-container">  
+<div class="cars-container">
   <h3>Add Car</h3>
 
   <form (ngSubmit)="addCar()">
-      <input type="text" placeholder="Make" 
-      [(ngModel)]="newCar.make" name="make required"/>
+    <input
+      type="text"
+      placeholder="Make"
+      [(ngModel)]="newCar.make"
+      name="make required"
+    />
 
-      <input type="text" placeholder="Model" 
-      [(ngModel)]="newCar.model" name="model" required />
+    <input
+      type="text"
+      placeholder="Model"
+      [(ngModel)]="newCar.model"
+      name="model"
+      required
+    />
 
-      <input type="number" placeholder="Year" 
-      [(ngModel)]="newCar.year" name="Year" required />
+    <input
+      type="number"
+      placeholder="Year"
+      [(ngModel)]="newCar.year"
+      name="Year"
+      required
+    />
 
-      <input type="number" placeholder="Price" 
-      [(ngModel)]="newCar.price" name="Price" required />
+    <input
+      type="number"
+      placeholder="Price"
+      [(ngModel)]="newCar.price"
+      name="Price"
+      required
+    />
 
-      <button type="submit">Add Car</button>
-
+    <button type="submit">Add Car</button>
   </form>
 
-<hr>
+  <hr />
 
-<h3>Cars</h3>
+  <h3>Cars</h3>
+   @if (isLoading()) {
+    <p>Loading cars...</p>
+    }
 
-@if (cars.length > 0){
-    <ul>
-        @for (car of cars; track car.id){
-            <li>
-                <span>{{car.make}} {{car.model}} ({{car.year}})</span>
-                <div class="button-group">
-                  <button (click)="editCar(car)">Edit</button>
-                  <button (click)="deleteCar(car.id)">Delete</button>
-                </div>
-            </li>
-        }
-    </ul>
-}   @else {<p>No cars found.</p>}
+    @else if (errorMessage()) {
+    <p class="error">{{errorMessage()}}</p>
+    }
 
+  @else if (cars().length > 0) {
+  <ul>
+    @for (car of cars(); track car.id) {
+    <li>
+      <span>{{car.make}} {{car.model}} ({{car.year}})</span>
+      <div class="button-group">
+        <button (click)="editCar(car)">Edit</button>
+        <button (click)="deleteCar(car.id)">Delete</button>
+      </div>
+    </li>
+    }
+  </ul>
+  } @else {
+  <p>No cars found.</p>
+  }
 
-<hr>
+  <hr />
 
-@if(editingCar){
-    <h3>Edit Car</h3>
+  @if(editingCar){
+  <h3>Edit Car</h3>
 
-    <form (ngSubmit)="saveCar()">
-        <input type="text" placeholder="Make" 
-        [(ngModel)]="editingCar.make" name="editMake" required/>
+  <form (ngSubmit)="saveCar()">
+    <input
+      type="text"
+      placeholder="Make"
+      [(ngModel)]="editingCar.make"
+      name="editMake"
+      required
+    />
 
-        <input type="text" placeholder="Model" 
-        [(ngModel)]="editingCar.model" name="model" required />
+    <input
+      type="text"
+      placeholder="Model"
+      [(ngModel)]="editingCar.model"
+      name="model"
+      required
+    />
 
-        <input type="number" placeholder="Year" 
-        [(ngModel)]="editingCar.year" name="Year" required />
+    <input
+      type="number"
+      placeholder="Year"
+      [(ngModel)]="editingCar.year"
+      name="Year"
+      required
+    />
 
-        <input type="number" placeholder="Price" 
-        [(ngModel)]="editingCar.price" name="Price" required />
-        
-        <button type="submit">Save</button>
-        <button type="button" (click)="editingCar = null">Cancel</button>
-    </form>
-}
+    <input
+      type="number"
+      placeholder="Price"
+      [(ngModel)]="editingCar.price"
+      name="Price"
+      required
+    />
+    
+    <button type="submit">Save</button>
+    <button type="button" (click)="editingCar = null">Cancel</button>
+  </form>
+  }
 
+  <h3>Search Car By ID</h3>
 
-<h3>Search Car By ID</h3>
-
-<!-- <form (ngSubmit)="findCarById()">
+  <!-- <form (ngSubmit)="findCarById()">
 
     <input type="number" placeholder="Id" 
     [(ngModel)]="newCar.make" name="make" required/>
