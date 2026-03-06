@@ -1,10 +1,17 @@
 :host {
   display: block;
+  background: #071019; /* dark page background */
+  color: #e6f7ff;
+  padding: 2rem 1rem;
 }
 
 .cars-container {
   max-width: 1000px;
   margin: 0 auto;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.6);
 }
 
 h1 {
@@ -16,17 +23,58 @@ form button {
   margin-right: 0;
 }
 
-li {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  flex-wrap: wrap;
-  gap: 15px;
+/* grid layout for car cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 0;
+  margin: 0 0 1rem 0;
 }
 
-li span {
-  flex: 1;
-  min-width: 200px;
+.car-card {
+  background: linear-gradient(180deg, #0b1318, #071018);
+  border: 1px solid rgba(0,240,255,0.06);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 110px;
+  color: #e6f7ff;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.car-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0,240,255,0.07), 0 2px 8px rgba(0,0,0,0.6);
+  border-color: rgba(0,240,255,0.18);
+}
+
+.car-card .card-content {
+  margin-bottom: 0.5rem;
+}
+
+.car-card h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.05rem;
+  color: #dffcff;
+}
+
+.car-card .year {
+  color: #9fbec7;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.pagination_numbers{
+  margin: 0px 10px 0px 0px;
 }
 
 .button-group {
@@ -40,5 +88,53 @@ li span {
   flex: 0 1 auto;
   margin-right: 0;
   min-width: 80px;
+  background: transparent;
+  color: #00f0ff;
+  border: 1px solid rgba(0,240,255,0.18);
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 140ms ease, box-shadow 140ms ease, color 140ms ease, transform 140ms ease;
 }
 
+.button-group button:hover {
+  background: rgba(0,240,255,0.12);
+  box-shadow: 0 6px 18px rgba(0,240,255,0.06), 0 0 20px rgba(0,240,255,0.04) inset;
+  transform: translateY(-2px);
+}
+
+/* primary style for form submit and prominent buttons */
+button[type="submit"], .primary {
+  background: linear-gradient(90deg, #00f0ff, #5ef0c7);
+  color: #031016;
+  border: none;
+  box-shadow: 0 8px 28px rgba(94,240,199,0.08);
+  padding: 0.55rem 0.8rem;
+}
+
+/* Pagination buttons tweak */
+.pagination button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.04);
+  color: #cfeff3;
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+}
+
+/* form and input adjustments for dark theme */
+form input[type="text"],
+form input[type="number"],
+form input, textarea {
+  background: #061018;
+  border: 1px solid rgba(255,255,255,0.04);
+  color: #e6f7ff;
+  padding: 0.5rem 0.6rem;
+  border-radius: 6px;
+  outline: none;
+}
+
+form input:focus, textarea:focus {
+  border-color: rgba(0,240,255,0.18);
+  box-shadow: 0 6px 18px rgba(0,240,255,0.04);
+}

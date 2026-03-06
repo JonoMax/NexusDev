@@ -10,5 +10,6 @@ namespace NexusDev.Data
 
         }
         public DbSet<Car> Cars => Set<Car>();
+        public DbSet<User> Users => Set<User>();
     }
 }

@@ -75,6 +75,8 @@ nav a.active {
 .content {
   flex: 1;
   padding: 30px;
-  background: #f1f5f9;
+  /* match the dark theme used by pages to avoid nested white panels */
+  background: linear-gradient(180deg, #071019, #071318);
+  color: #e6f7ff;
   overflow-y: auto;
 }

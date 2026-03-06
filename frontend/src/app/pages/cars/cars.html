@@ -1,68 +1,44 @@
 <div class="cars-container">
-  <h3>Add Car</h3>
-
-  <form (ngSubmit)="addCar()">
-    <input
-      type="text"
-      placeholder="Make"
-      [(ngModel)]="newCar.make"
-      name="make required"
-    />
-
-    <input
-      type="text"
-      placeholder="Model"
-      [(ngModel)]="newCar.model"
-      name="model"
-      required
-    />
-
-    <input
-      type="number"
-      placeholder="Year"
-      [(ngModel)]="newCar.year"
-      name="Year"
-      required
-    />
-
-    <input
-      type="number"
-      placeholder="Price"
-      [(ngModel)]="newCar.price"
-      name="Price"
-      required
-    />
-
-    <button type="submit">Add Car</button>
-  </form>
+  
 
   <hr />
 
   <h3>Cars</h3>
-   @if (isLoading()) {
-    <p>Loading cars...</p>
-    }
-
-    @else if (errorMessage()) {
-    <p class="error">{{errorMessage()}}</p>
-    }
-
-  @else if (cars().length > 0) {
-  <ul>
-    @for (car of cars(); track car.id) {
-    <li>
-      <span>{{car.make}} {{car.model}} ({{car.year}})</span>
+  @if (isLoading()) {
+  <p>Loading cars...</p>
+  } @else if (errorMessage()) {
+  <p class="error">{{errorMessage()}}</p>
+  } @else if (cars().length > 0) {
+  <!-- card grid instead of list -->
+  <div class="card-grid">
+    @for (car of pagedCars(); track car.id) {
+    <div class="car-card">
+      <div class="card-content">
+        <h4>{{car.make}} {{car.model}}</h4>
+        <p class="year">{{car.year}}</p>
+      </div>
       <div class="button-group">
         <button (click)="editCar(car)">Edit</button>
         <button (click)="deleteCar(car.id)">Delete</button>
       </div>
-    </li>
+    </div>
     }
-  </ul>
+  </div>
+   <div class="pagination">
+      <button (click)="previousPage()" [disabled]="currentPage() === 1">
+        Previous
+      </button>
+
+      <span class="pagination_numbers"> Page {{ currentPage() }} of {{ totalPages() }} </span>
+
+      <button (click)="nextPage()" [disabled]="currentPage() === totalPages()">
+        Next
+      </button>
+    </div>
   } @else {
   <p>No cars found.</p>
   }
-
+ 
   <hr />
 
   @if(editingCar){
@@ -100,7 +76,7 @@
       name="Price"
       required
     />
-    
+
     <button type="submit">Save</button>
     <button type="button" (click)="editingCar = null">Cancel</button>
   </form>

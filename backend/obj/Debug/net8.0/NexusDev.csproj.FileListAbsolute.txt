@@ -397,7 +397,6 @@ C:\git\NexusDev\backend\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\git\NexusDev\backend\obj\Debug\net8.0\staticwebassets.development.json
 C:\git\NexusDev\backend\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\git\NexusDev\backend\obj\Debug\net8.0\swae.build.ex.cache
-C:\git\NexusDev\backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\git\NexusDev\backend\obj\Debug\net8.0\NexusDev.csproj.Up2Date
 C:\git\NexusDev\backend\obj\Debug\net8.0\NexusDev.dll
 C:\git\NexusDev\backend\obj\Debug\net8.0\refint\NexusDev.dll
@@ -460,3 +459,5 @@ C:\git\NexusDev\backend\bin\Debug\net8.0\ru\Microsoft.Testing.Extensions.MSBuild
 C:\git\NexusDev\backend\bin\Debug\net8.0\tr\Microsoft.Testing.Extensions.MSBuild.resources.dll
 C:\git\NexusDev\backend\bin\Debug\net8.0\zh-Hans\Microsoft.Testing.Extensions.MSBuild.resources.dll
 C:\git\NexusDev\backend\bin\Debug\net8.0\zh-Hant\Microsoft.Testing.Extensions.MSBuild.resources.dll
+C:\git\NexusDev\backend\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\git\NexusDev\backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

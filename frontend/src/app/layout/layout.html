@@ -1,24 +1,27 @@
 <div class="app-container">
-
     <aside class="sidebar">
         <div class="profile">
             <img src="https://i.pravatar.cc/80" alt="Profile" />
             <h4>Jono</h4>
             <small>Admin</small>
         </div>
-
-    <nav>
-        <ul>
-            <li><a routerLink="/cars" routerLinkActive="active">Cars</a></li>
-            <li><a routerLink="/admin" routerLinkActive="active">Manage Cars</a></li>
-            <li><a routerLink="/terms" routerLinkActive="active">Terms</a></li>
-            <li><a class="logout">Logout</a></li>
-        </ul>
-    </nav>
+        <nav>
+            <ul>
+                <li><a routerLink="/cars" routerLinkActive="active">Cars</a></li>
+                @if (auth.isAdmin()) {
+                    <li><a routerLink="/manage-cars" routerLinkActive="active">Manage Cars</a></li>
+                }
+                <li><a routerLink="/terms" routerLinkActive="active">Terms</a></li>
+                @if (!auth.isLoggedIn()) {
+                    <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+                }
+                @if (auth.isLoggedIn()) {
+                    <li><a class="logout" (click)="auth.logout()">Logout</a></li>
+                }
+            </ul>
+        </nav>
     </aside>
-
     <main class="content">
         <router-outlet></router-outlet>
     </main>
-
 </div>

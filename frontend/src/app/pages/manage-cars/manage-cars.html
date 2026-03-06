@@ -1,0 +1,38 @@
+<div class="container">
+<h3>Add Car</h3>
+
+  <form (ngSubmit)="addCar()">
+    <input
+      type="text"
+      placeholder="Make"
+      [(ngModel)]="newCar.make"
+      name="make required"
+    />
+
+    <input
+      type="text"
+      placeholder="Model"
+      [(ngModel)]="newCar.model"
+      name="model"
+      required
+    />
+
+    <input
+      type="number"
+      placeholder="Year"
+      [(ngModel)]="newCar.year"
+      name="Year"
+      required
+    />
+
+    <input
+      type="number"
+      placeholder="Price"
+      [(ngModel)]="newCar.price"
+      name="Price"
+      required
+    />
+
+    <button type="submit">Add Car</button>
+  </form>
+</div>

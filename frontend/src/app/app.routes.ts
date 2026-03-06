@@ -1,16 +1,38 @@
 import { Routes } from '@angular/router';
 import {Cars} from './pages/cars/cars';
-import {Layout as LayoutComponent} from './layout/layout';
+import {Layout} from './layout/layout';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
-    {
+
+  // Login route (outside layout)
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login/login')
+        .then(m => m.Login)
+  },
+
+  // Layout wrapper
+  {
     path: '',
-    component: LayoutComponent,
+    component: Layout,
     children: [
       { path: 'cars', component: Cars },
+
+      {
+        path: 'manage-cars',
+        loadComponent: () =>
+          import('./pages/manage-cars/manage-cars')
+            .then(m => m.ManageCars),
+        canActivate: [authGuard],
+        data: { role: 'admin' }
+      },
+
+      { path: 'terms', component: Cars },
+
       { path: '', redirectTo: 'cars', pathMatch: 'full' },
-      { path: 'admin', component: Cars }, // temp reuse
-      { path: 'terms', component: Cars }  // temp reuse
+
     ]
   }
 ];

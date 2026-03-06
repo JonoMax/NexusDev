@@ -1,37 +1,57 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { CarService } from '../../services/car.service';
 import { Car } from '../../models/car.model';
 import { FormsModule } from '@angular/forms';
-import {signal} from "@angular/core";
+import { signal } from '@angular/core';
 
 @Component({
   selector: 'app-cars',
-  imports: [FormsModule, ],
+  imports: [FormsModule],
   templateUrl: './cars.html',
   styleUrl: './cars.scss',
 })
-export class Cars implements OnInit{
-  private carService =  inject(CarService);
+export class Cars implements OnInit {
+  private carService = inject(CarService);
 
   // Holds list of cars retrieved from the backend
   cars = signal<Car[]>([]);
 
-   // Indicates whether data is currently being loaded from the API
+  // Indicates whether data is currently being loaded from the API
   isLoading = signal<boolean>(false);
 
   // Holds any error message from API calls
   errorMessage = signal<string>('');
 
-  // Object bound to the "Add Car" from inputs
-  // Represents a new car before it is sent to the API
-  newCar: Car = {
-    id: 0,
-    make: '',
-    model: '',
-    year: new Date().getFullYear(),
-    price: 0
-  }
+  filterMake = signal('');
+  filterYear = signal<number | null>(null);
 
+  filteredCars = computed(() => {
+    const result = this.cars().filter(car => {
+      const matchesMake = !this.filterMake() || car.make.toLowerCase().includes(this.filterMake().toLowerCase());
+      const matchesYear = !this.filterYear() || car.year === this.filterYear();
+      return matchesMake && matchesYear;
+    });
+    if(this.currentPage() > Math.ceil(result.length / this.pageSize)){
+      this.currentPage.set(1);
+    }
+    return result;
+  });
+
+  currentPage = signal(1);
+  // show up to 10 cards per page
+  pageSize = 12;
+
+  totalPages = computed(() => {
+    return Math.ceil(this.filteredCars().length / this.pageSize);
+  });
+
+  pagedCars = computed(() => {
+    const start = (this.currentPage() - 1) * this.pageSize;
+    const end = start + this.pageSize;
+
+    return this.filteredCars().slice(start, end);
+  });
+ 
   Id: number = 0;
   
   //Holds a temp copy of a car while it is being edited
@@ -52,20 +72,6 @@ export class Cars implements OnInit{
         this.errorMessage.set(error.message);
         this.isLoading.set(false);
       }
-    });
-  }
-
-  // Sends a new car to the backend and immediately updates the UI
-  addCar(){
-    this.carService.addCar(this.newCar).subscribe(car => {
-      this.cars.update(cars => [...cars, car]);
-      this.newCar = {
-        id: 0,
-        make: '',
-        model: '',
-        year: new Date().getFullYear(),
-        price: 0
-      };
     });
   }
 
@@ -94,5 +100,17 @@ export class Cars implements OnInit{
       // Exit edit mode and reset the temporary state
       this.editingCar = null;
     })
+  }
+
+  nextPage() {
+    if (this.currentPage() < this.totalPages()) {
+      this.currentPage.update(p => p + 1);
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage() > 1) {
+      this.currentPage.update(p => p - 1);
+    }
   }
 }
