@@ -12,7 +12,7 @@ export const authGuard: CanActivateFn = (route) => {
     return router.createUrlTree(['/login']);
   }
 
-  if (requiredRole && auth.user()?.role !== requiredRole) {
+  if (requiredRole && !auth.isAdmin()) {
     return router.createUrlTree(['/cars']);
   }
 

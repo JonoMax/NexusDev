@@ -12,7 +12,18 @@ export const routes: Routes = [
       import('./pages/login/login')
         .then(m => m.Login)
   },
-
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./pages/register/register')
+        .then(m => m.Register)
+  },
+  {
+  path: 'favorites',
+  loadComponent: () =>
+    import('./pages/favorites/favorites')
+      .then(m => m.Favorites)
+},
   // Layout wrapper
   {
     path: '',

@@ -3,6 +3,10 @@ import { CarService } from '../../services/car.service';
 import { Car } from '../../models/car.model';
 import { FormsModule } from '@angular/forms';
 import { signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { FavoritesService } from '../../services/favorites/favorites';
 
 @Component({
   selector: 'app-cars',
@@ -26,19 +30,21 @@ export class Cars implements OnInit {
   filterYear = signal<number | null>(null);
 
   filteredCars = computed(() => {
-    const result = this.cars().filter(car => {
-      const matchesMake = !this.filterMake() || car.make.toLowerCase().includes(this.filterMake().toLowerCase());
+    const result = this.cars().filter((car) => {
+      const matchesMake =
+        !this.filterMake() ||
+        car.make.toLowerCase().includes(this.filterMake().toLowerCase());
       const matchesYear = !this.filterYear() || car.year === this.filterYear();
       return matchesMake && matchesYear;
     });
-    if(this.currentPage() > Math.ceil(result.length / this.pageSize)){
+    if (this.currentPage() > Math.ceil(result.length / this.pageSize)) {
       this.currentPage.set(1);
     }
     return result;
   });
 
   currentPage = signal(1);
-  // show up to 10 cards per page
+  // show up to 12 cards per page
   pageSize = 12;
 
   totalPages = computed(() => {
@@ -51,66 +57,94 @@ export class Cars implements OnInit {
 
     return this.filteredCars().slice(start, end);
   });
- 
+
   Id: number = 0;
-  
+
   //Holds a temp copy of a car while it is being edited
   // If null, no car is currently in edit mode
   editingCar: Car | null = null;
+  private http = inject(HttpClient);
+  private router = inject(Router);
+  auth = inject(AuthService);
+  private favoritesService = inject(FavoritesService);
+  favoriteIds = new Set<number>();
 
-  ngOnInit(): void {
+  ngOnInit() {
     //start loading
     this.isLoading.set(true);
-    // subscribe is the verb
-    // “Go do this work. When the result arrives, call me and I’ll handle it.”
-      this.carService.getCars().subscribe({ 
-      next: cars => {
+    //load cars
+    this.carService.getCars().subscribe({
+      next: (cars) => {
         this.cars.set(cars);
         this.isLoading.set(false);
       },
-      error: error => {
+      error: (error) => {
         this.errorMessage.set(error.message);
         this.isLoading.set(false);
-      }
+      },
+    });
+    // load favorites if logged in
+    const user = this.auth.user();
+
+    if (!user) return;
+
+    this.favoritesService.getFavorites(user.id).subscribe((favorites) => {
+      this.favoriteIds = new Set(favorites.map((c) => c.id));
     });
   }
 
-  deleteCar(id: number){
+  deleteCar(id: number) {
     this.carService.deleteCar(id).subscribe(() => {
-      this.cars.update(c => c.filter(car => car.id !== id));
-    })
+      this.cars.update((c) => c.filter((car) => car.id !== id));
+    });
   }
 
-  editCar(car: Car){
+  editCar(car: Car) {
     // Clone the car to avoid mutating the list while the user edits
-    this.editingCar = { ...car};
-    console.log("Edit Car");
+    this.editingCar = { ...car };
+    console.log('Edit Car');
   }
 
-  saveCar(){
+  saveCar() {
     if (!this.editingCar) return;
     this.carService.updateCar(this.editingCar).subscribe(() => {
-
-    this.cars.update(cars =>
-      cars.map(c =>
-        c.id === this.editingCar!.id ? this.editingCar! : c
-    )
-  );
+      this.cars.update((cars) =>
+        cars.map((c) => (c.id === this.editingCar!.id ? this.editingCar! : c)),
+      );
 
       // Exit edit mode and reset the temporary state
       this.editingCar = null;
-    })
+    });
+  }
+
+  toggleFavorite(carId: number) {
+    const user = this.auth.user();
+
+    if (!user) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    if (this.favoriteIds.has(carId)) {
+      this.favoritesService.removeFavorite(carId, user.id).subscribe(() => {
+        this.favoriteIds.delete(carId);
+      });
+    } else {
+      this.favoritesService.addFavorite(carId, user.id).subscribe(() => {
+        this.favoriteIds.add(carId);
+      });
+    }
   }
 
   nextPage() {
     if (this.currentPage() < this.totalPages()) {
-      this.currentPage.update(p => p + 1);
+      this.currentPage.update((p) => p + 1);
     }
   }
 
   previousPage() {
     if (this.currentPage() > 1) {
-      this.currentPage.update(p => p - 1);
+      this.currentPage.update((p) => p - 1);
     }
   }
 }

@@ -14,12 +14,22 @@ export class Login {
   private auth = inject(AuthService);
   private router = inject(Router);
   username = '';
+  password = '';
   role = signal<'user' | 'admin'>('user');
 
-  login() {
-    if(!this.username) return;
+  login(){
+    this.auth.login(this.username, this.password).subscribe({
+      next: (user) => {
+        this.auth.setUser(user);
+        this.router.navigate(['/cars']);
+      },
+      error: (err) => {
+        alert('Login failed. Please check your credentials and try again.');
+      }
+    });
+  }
 
-    this.auth.login(this.username, this.role());
-    this.router.navigate(['/cars']);  
+  register(){
+    this.router.navigate(['/register']);
   }
 }

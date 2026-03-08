@@ -1,8 +1,10 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 export interface User {
+  id: number;
   username: string;
-  role: 'admin' | 'user';
+  isAdmin: boolean;
 }
 
 @Injectable({
@@ -10,17 +12,28 @@ export interface User {
 })
 export class AuthService {
 
-  private _user = signal<User | null>(null);
+  private http = inject(HttpClient);
+  private apiUrl = 'https://localhost:7146/api/auth';
+  user = signal<User | null>(null);
+  isLoggedIn = computed(() => !!this.user());
 
-  user = computed(() => this._user());
-  isLoggedIn = computed(() => !!this._user());
-  isAdmin = computed(() => this._user()?.role === 'admin');
-
-  login(username: string, role: 'admin' | 'user') {
-    this._user.set({ username, role });
+  login(username: string, password: string) {
+    return this.http.post<User>(`${this.apiUrl}/login`, { username, password })
   }
 
-  logout() {
-    this._user.set(null);
+  register(username: string, password: string) {
+    return this.http.post<User>(`${this.apiUrl}/register`, { username, password })
+  }
+
+  setUser(user: User){
+    this.user.set(user);
+  }
+
+  logout(){
+    this.user.set(null);
+  }
+
+  isAdmin() {
+    return this.user()?.isAdmin === true;
   }
 }

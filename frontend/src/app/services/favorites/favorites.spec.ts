@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Cars } from './cars';
+import { Favorites } from './favorites';
 
-describe('Cars', () => {
-  let component: Cars;
-  let fixture: ComponentFixture<Cars>;
+describe('Favorites', () => {
+  let component: Favorites;
+  let fixture: ComponentFixture<Favorites>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Cars]
+      imports: [Favorites]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Cars);
+    fixture = TestBed.createComponent(Favorites);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -20,9 +20,4 @@ describe('Cars', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
 });
-
-
-
-

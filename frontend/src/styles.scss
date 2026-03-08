@@ -1,4 +1,4 @@
-/* Dark theme with modern styling */
+/* Modern gradient theme */
 
 * {
   margin: 0;
@@ -7,8 +7,8 @@
 }
 
 body {
-  background: #000000;
-  color: #e0e0e0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #333;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   min-height: 100vh;
@@ -38,9 +38,9 @@ h3 {
 }
 
 input, textarea {
-  background-color: #0a0a0a;
-  border: 2px solid #00ffff;
-  color: #e0e0e0;
+  background-color: white;
+  border: 2px solid #ddd;
+  color: #333;
   padding: 10px 12px;
   border-radius: 5px;
   font-size: 1rem;
@@ -50,9 +50,9 @@ input, textarea {
 
 input:focus, textarea:focus {
   outline: none;
-  border-color: #ff00ff;
-  box-shadow: 0 0 12px rgba(255, 0, 255, 0.6), inset 0 0 8px rgba(255, 0, 255, 0.2);
-  background-color: #1a0a1a;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+  background-color: white;
 }
 
 input::placeholder {
@@ -60,9 +60,9 @@ input::placeholder {
 }
 
 button {
-  background: linear-gradient(135deg, #0080ff 0%, #00ffff 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
-  color: #000000;
+  color: white;
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 1rem;
@@ -75,7 +75,7 @@ button {
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 20px rgba(0, 128, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.4);
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
 }
 
 button:active {
@@ -83,17 +83,17 @@ button:active {
 }
 
 form {
-  background: rgba(10, 10, 10, 0.7);
-  border: 2px solid #0080ff;
+  background: white;
+  border: 2px solid #ddd;
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 30px;
-  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 hr {
   border: none;
-  border-top: 2px solid #00ffff;
+  border-top: 2px solid #667eea;
   margin: 30px 0;
   opacity: 0.7;
 }
@@ -104,8 +104,8 @@ ul {
 }
 
 li {
-  background: rgba(10, 10, 10, 0.5);
-  border-left: 3px solid #ff00ff;
+  background: white;
+  border-left: 3px solid #667eea;
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 4px;
@@ -113,15 +113,16 @@ li {
   justify-content: space-between;
   align-items: center;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 li:hover {
-  background: rgba(10, 10, 10, 0.8);
-  border-left-color: #00ffff;
-  box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+  background: #f9f9f9;
+  border-left-color: #764ba2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 p {
   font-size: 1.1rem;
-  color: #b0b0b0;
+  color: #666;
 }

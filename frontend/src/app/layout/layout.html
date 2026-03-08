@@ -1,9 +1,17 @@
 <div class="app-container">
     <aside class="sidebar">
         <div class="profile">
-            <img src="https://i.pravatar.cc/80" alt="Profile" />
-            <h4>Jono</h4>
-            <small>Admin</small>
+            @if (auth.user()) {
+                <img src="https://i.pravatar.cc/80" alt="Profile" />
+                <h4>{{ auth.user()?.username }}</h4>
+                <small>
+                    @if (auth.user()?.isAdmin) {
+                        Admin
+                    } @else {
+                        User
+                    }
+                </small>
+            }
         </div>
         <nav>
             <ul>
@@ -11,9 +19,11 @@
                 @if (auth.isAdmin()) {
                     <li><a routerLink="/manage-cars" routerLinkActive="active">Manage Cars</a></li>
                 }
-                <li><a routerLink="/terms" routerLinkActive="active">Terms</a></li>
                 @if (!auth.isLoggedIn()) {
                     <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+                }
+                @if (auth.isLoggedIn()) {
+                    <li><a routerLink="/favorites">Favorites</a></li>
                 }
                 @if (auth.isLoggedIn()) {
                     <li><a class="logout" (click)="auth.logout()">Logout</a></li>

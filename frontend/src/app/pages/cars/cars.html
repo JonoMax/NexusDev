@@ -1,8 +1,4 @@
 <div class="cars-container">
-  
-
-  <hr />
-
   <h3>Cars</h3>
   @if (isLoading()) {
   <p>Loading cars...</p>
@@ -18,27 +14,38 @@
         <p class="year">{{car.year}}</p>
       </div>
       <div class="button-group">
+        <button (click)="toggleFavorite(car.id)">
+          @if (favoriteIds.has(car.id)) {
+             ❤️ 
+            } @else { 
+              ♡ 
+            }
+        </button>
+        @if (auth.isAdmin()) {
         <button (click)="editCar(car)">Edit</button>
         <button (click)="deleteCar(car.id)">Delete</button>
+        }
       </div>
     </div>
     }
   </div>
-   <div class="pagination">
-      <button (click)="previousPage()" [disabled]="currentPage() === 1">
-        Previous
-      </button>
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="currentPage() === 1">
+      Previous
+    </button>
 
-      <span class="pagination_numbers"> Page {{ currentPage() }} of {{ totalPages() }} </span>
+    <span class="pagination_numbers">
+      Page {{ currentPage() }} of {{ totalPages() }}
+    </span>
 
-      <button (click)="nextPage()" [disabled]="currentPage() === totalPages()">
-        Next
-      </button>
-    </div>
+    <button (click)="nextPage()" [disabled]="currentPage() === totalPages()">
+      Next
+    </button>
+  </div>
   } @else {
   <p>No cars found.</p>
   }
- 
+
   <hr />
 
   @if(editingCar){
@@ -65,7 +72,7 @@
       type="number"
       placeholder="Year"
       [(ngModel)]="editingCar.year"
-      name="Year"
+      name="year"
       required
     />
 
@@ -73,7 +80,7 @@
       type="number"
       placeholder="Price"
       [(ngModel)]="editingCar.price"
-      name="Price"
+      name="price"
       required
     />
 
@@ -81,15 +88,4 @@
     <button type="button" (click)="editingCar = null">Cancel</button>
   </form>
   }
-
-  <h3>Search Car By ID</h3>
-
-  <!-- <form (ngSubmit)="findCarById()">
-
-    <input type="number" placeholder="Id" 
-    [(ngModel)]="newCar.make" name="make" required/>
-
-    <button type="submit">Find</button>
-
-</form> -->
 </div>

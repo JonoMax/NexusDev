@@ -20,13 +20,15 @@ namespace NexusDev.Controllers
         public async Task<IActionResult> Register(RegisterDto dto)
         {
             if (_context.Users.Any(u => u.Username == dto.Username))
-                return BadRequest("User already exists");
+                return BadRequest("User already exists"); 
+
+            var isFirstUSer = !_context.Users.Any();
 
             var user = new User
             {
                 Username = dto.Username,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
-                IsAdmin = false
+                IsAdmin = isFirstUSer
             };
 
             _context.Users.Add(user);
