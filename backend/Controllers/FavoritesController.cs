@@ -18,6 +18,14 @@ namespace NexusDev.Controllers
         [HttpPost("{carId}")]
         public async Task<IActionResult> AddFavorites(int carId, [FromQuery] int userId)
         {
+            var exists = await _context.Favorites
+            .AnyAsync(f => f.CarId == carId && f.UserId == userId);
+
+            if (exists)
+            {
+                return BadRequest("Already favorited");
+            }
+
             var favorite = new Favorite
             {
                 UserId = userId,
@@ -41,6 +49,22 @@ namespace NexusDev.Controllers
 
                 return Ok(cars);
             }
+        }
+        [HttpDelete("{carId}")]
+        public async Task<IActionResult> RemoveFavorite(int carId, int userId)
+        {
+            var favorite = await _context.Favorites
+                .FirstOrDefaultAsync(f => f.CarId == carId && f.UserId == userId);
+
+            if (favorite == null)
+            {
+                return NotFound();
+            }
+
+            _context.Favorites.Remove(favorite);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }

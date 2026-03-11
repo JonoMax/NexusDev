@@ -163,6 +163,27 @@
   },
   {
     "ContainingType": "NexusDev.Controllers.FavoritesController",
+    "Method": "RemoveFavorite",
+    "RelativePath": "api/Favorites/{carId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "carId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NexusDev.Controllers.FavoritesController",
     "Method": "GetFavorites",
     "RelativePath": "api/Favorites/{userId}",
     "HttpMethod": "GET",
