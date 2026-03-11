@@ -5785,23 +5785,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jonom\\.nuget\\packages\\": {},
+    "C:\\Users\\Jax\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\git\\NexusDev\\backend\\NexusDev.csproj",
+      "projectUniqueName": "E:\\git\\NexusDev\\backend\\NexusDev.csproj",
       "projectName": "NexusDev",
-      "projectPath": "C:\\git\\NexusDev\\backend\\NexusDev.csproj",
-      "packagesPath": "C:\\Users\\jonom\\.nuget\\packages\\",
-      "outputPath": "C:\\git\\NexusDev\\backend\\obj\\",
+      "projectPath": "E:\\git\\NexusDev\\backend\\NexusDev.csproj",
+      "packagesPath": "C:\\Users\\Jax\\.nuget\\packages\\",
+      "outputPath": "E:\\git\\NexusDev\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\jonom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jax\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5828,7 +5828,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {
@@ -5888,7 +5888,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

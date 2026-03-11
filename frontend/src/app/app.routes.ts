@@ -18,18 +18,19 @@ export const routes: Routes = [
       import('./pages/register/register')
         .then(m => m.Register)
   },
-  {
-  path: 'favorites',
-  loadComponent: () =>
-    import('./pages/favorites/favorites')
-      .then(m => m.Favorites)
-},
   // Layout wrapper
   {
     path: '',
     component: Layout,
     children: [
       { path: 'cars', component: Cars },
+      {
+        path: 'favorites',
+        loadComponent: () =>
+          import('./pages/favorites/favorites')
+            .then(m => m.Favorites),
+        canActivate: [authGuard]
+      },
 
       {
         path: 'manage-cars',
