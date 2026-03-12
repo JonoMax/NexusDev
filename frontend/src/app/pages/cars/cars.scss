@@ -138,3 +138,19 @@ form input:focus, textarea:focus {
   border-color: rgba(0,240,255,0.18);
   box-shadow: 0 6px 18px rgba(0,240,255,0.04);
 }
+
+.favorite-btn {
+  font-size: 1.4rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.2);
+}
+
+.favorite-btn:active {
+  transform: scale(1.35);
+}

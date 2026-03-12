@@ -25,4 +25,20 @@ export class Favorites {
       .getFavorites(user.id)
       .subscribe(cars => this.cars.set(cars));
   } 
+
+  removeFavorite(carId: number) {
+
+  const user = this.auth.user();
+
+  if (!user) return;
+
+  this.favoritesService.removeFavorite(carId, user.id)
+    .subscribe(() => {
+
+      // remove car from UI instantly
+      this.cars.update(cars => cars.filter(c => c.id !== carId));
+
+    });
+
+  }
 }
