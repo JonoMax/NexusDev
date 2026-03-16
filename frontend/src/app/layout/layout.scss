@@ -52,24 +52,28 @@ nav ul li:last-child {
 }
 
 nav a {
-  display: block;            /* ensure the whole area of the link is clickable */
+  display: flex;             /* ensure the whole area of the link is clickable */
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
   white-space: nowrap;       /* prevent the text from breaking across lines */
   color: white;
   text-decoration: none;
-  padding: 8px;
-  padding-right: 125px;
+  padding: 8px 16px;
   border-radius: 6px;
 }
 
-nav a:hover {
+nav a:hover,
+nav a.active {
   background: #3cd5e9;
+}
+
+nav a:hover {
   color: black;
 }
 
 nav a.active {
-  background: #3cd5e9;
   color: white;
-  padding-right: 120px;
 }
 
 .logout {
@@ -89,3 +93,21 @@ nav a.active {
   background: rgb(212, 63, 63);
   color: rgb(250, 249, 249);
 } 
+
+.favorites-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge {
+  background: #e53935;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  padding: 2px 6px;
+  border-radius: 10px;
+
+  line-height: 1;
+}

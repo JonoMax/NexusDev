@@ -3,16 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { Car } from '../../models/car.model';
 import { FavoritesService } from '../../services/favorites/favorites';
+import { RouterLinkActive, RouterLink } from "@angular/router";
 
 @Component({
   selector: 'favorites',
-  imports: [],
+  imports: [RouterLinkActive, RouterLink],
   templateUrl: './favorites.html',
   styleUrl: './favorites.scss',
 })
 export class Favorites {
+
   private auth = inject(AuthService);
   private favoritesService = inject(FavoritesService);
+  favoriteCount = signal(0);
 
   cars = signal<Car[]>([]);
 
@@ -23,7 +26,9 @@ export class Favorites {
 
     this.favoritesService
       .getFavorites(user.id)
-      .subscribe(cars => this.cars.set(cars));
+      .subscribe(cars => { this.cars.set(cars); 
+        this.favoriteCount.set(cars.length);
+      });
   } 
 
   removeFavorite(carId: number) {
@@ -37,6 +42,7 @@ export class Favorites {
 
       // remove car from UI instantly
       this.cars.update(cars => cars.filter(c => c.id !== carId));
+      this.favoritesService.favoriteCount.update(c => c - 1);
 
     });
 

@@ -50,6 +50,7 @@ namespace NexusDev.Controllers
                 return Ok(cars);
             }
         }
+
         [HttpDelete("{carId}")]
         public async Task<IActionResult> RemoveFavorite(int carId, int userId)
         {

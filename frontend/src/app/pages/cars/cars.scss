@@ -74,7 +74,7 @@ form button {
 }
 
 .pagination_numbers{
-  margin: 0px 10px 0px 0px;
+  margin: 5px 10px 0px 0px;
 }
 
 .button-group {
@@ -153,4 +153,71 @@ form input:focus, textarea:focus {
 
 .favorite-btn:active {
   transform: scale(1.35);
+}
+
+/* Edit Car Section Styles */
+.edit-car-section {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: linear-gradient(180deg, rgba(11, 19, 24, 0.8), rgba(7, 16, 24, 0.6));
+  border: 1px solid rgba(0, 240, 255, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 240, 255, 0.05);
+}
+
+.edit-car-section h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #00f0ff;
+  font-size: 1.3rem;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group input {
+  width: 100%;
+}
+
+.edit-car-section .button-group {
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.btn-save {
+  background: linear-gradient(90deg, #00f0ff, #5ef0c7) !important;
+  color: #031016 !important;
+  border: none !important;
+  box-shadow: 0 8px 28px rgba(94, 240, 199, 0.12) !important;
+  padding: 0.6rem 0.8rem !important;
+  font-weight: 600;
+  flex: 1;
+  transition: box-shadow 140ms ease, transform 140ms ease;
+}
+
+.btn-save:hover {
+  box-shadow: 0 12px 40px rgba(94, 240, 199, 0.2) !important;
+  transform: translateY(-2px);
+}
+
+.btn-cancel {
+  background: transparent !important;
+  color: #00f0ff !important;
+  border: 1px solid rgba(0, 240, 255, 0.18) !important;
+  padding: 0.6rem 0.8rem !important;
+  font-weight: 600;
+  flex: 1;
+  transition: background-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+}
+
+.btn-cancel:hover {
+  background: rgba(0, 240, 255, 0.08) !important;
+  box-shadow: 0 6px 18px rgba(0, 240, 255, 0.06), 0 0 20px rgba(0, 240, 255, 0.04) inset;
+  transform: translateY(-2px);
 }

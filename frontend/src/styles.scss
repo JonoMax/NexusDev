@@ -6,13 +6,18 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+  overflow: hidden; /* keep scrollbars within app content */
+}
+
 body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #333;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   min-height: 100vh;
-  padding: 20px;
 }
 
 h1, h2, h3 {

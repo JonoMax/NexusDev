@@ -14,13 +14,14 @@
         <p class="year">{{car.year}}</p>
       </div>
       <div class="button-group">
+        @if (!auth.isAdmin()) {
         <button
           class="favorite-btn"
           (click)="toggleFavorite(car.id)"
-          title="Log in to favorite cars"
-        >
+          title="Log in to favorite cars">
           @if (favoriteIds.has(car.id)) { ❤️ } @else { ♡ }
         </button>
+        } 
         @if (auth.isAdmin()) {
         <button (click)="editCar(car)">Edit</button>
         <button (click)="deleteCar(car.id)">Delete</button>
@@ -49,43 +50,55 @@
   <hr />
 
   @if(editingCar){
-  <h3>Edit Car</h3>
+  <div class="edit-car-section" #editSection>
+    <h3>Edit Car</h3>
 
-  <form (ngSubmit)="saveCar()">
-    <input
-      type="text"
-      placeholder="Make"
-      [(ngModel)]="editingCar.make"
-      name="editMake"
-      required
-    />
+    <form (ngSubmit)="saveCar()" class="edit-form">
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Make"
+          [(ngModel)]="editingCar.make"
+          name="editMake"
+          required
+        />
+      </div>
 
-    <input
-      type="text"
-      placeholder="Model"
-      [(ngModel)]="editingCar.model"
-      name="model"
-      required
-    />
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Model"
+          [(ngModel)]="editingCar.model"
+          name="model"
+          required
+        />
+      </div>
 
-    <input
-      type="number"
-      placeholder="Year"
-      [(ngModel)]="editingCar.year"
-      name="year"
-      required
-    />
+      <div class="form-group">
+        <input
+          type="number"
+          placeholder="Year"
+          [(ngModel)]="editingCar.year"
+          name="year"
+          required
+        />
+      </div>
 
-    <input
-      type="number"
-      placeholder="Price"
-      [(ngModel)]="editingCar.price"
-      name="price"
-      required
-    />
+      <div class="form-group">
+        <input
+          type="number"
+          placeholder="Price"
+          [(ngModel)]="editingCar.price"
+          name="price"
+          required
+        />
+      </div>
 
-    <button type="submit">Save</button>
-    <button type="button" (click)="editingCar = null">Cancel</button>
-  </form>
+      <div class="button-group">
+        <button type="submit" class="btn-save">Save</button>
+        <button type="button" class="btn-cancel" (click)="editingCar = null">Cancel</button>
+      </div>
+    </form>
+  </div>
   }
 </div>

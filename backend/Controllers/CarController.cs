@@ -34,7 +34,6 @@ namespace NexusDev.Controllers
         }
 
         [HttpGet("{id}")]
-        /*public async Task<Car?> Get(int id) => await _repo.GetByIdAsync(id);*/
         public async Task<ActionResult<CarDto>> GetById(int id)
         {
             var car = await _repo.GetByIdAsync(id);

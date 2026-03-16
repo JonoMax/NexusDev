@@ -1,16 +1,22 @@
 <div class="cars">
+  <!-- show a friendly message when there are no favorites -->
+  @if (cars().length === 0) {
+  <div class="empty-state">
+    <h3>No favorite cars yet ❤️</h3>
+    <p>Start browsing and add some!</p>
+    <a routerLink="/cars" routerLinkActive="active">Browse Cars</a>
+  </div>
+}
 
   @for (car of cars(); track car.id) {
-
     <div class="car-card">
-
-      <h3>{{ car.make }} {{ car.model }}</h3>
-      <p>{{ car.year }}</p>
-
+      <div class="info">
+        <h3>{{ car.make }} {{ car.model }}</h3>
+        <p class="year">{{ car.year }}</p>
+      </div>
+      <button class="remove" (click)="removeFavorite(car.id)">
+        ❌ Remove
+      </button>
     </div>
-    <button (click)="removeFavorite(car.id)">
-      ❌ Remove
-    </button>
   }
-
 </div>
