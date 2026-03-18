@@ -1,0 +1,36 @@
+<div class="app-container">
+  <aside class="sidebar">
+    <div class="profile">
+      @if (auth.user()) {
+      <img src="https://i.pravatar.cc/80" alt="Profile" />
+      <h4>{{ auth.user()?.username }}</h4>
+      <small> @if (auth.user()?.isAdmin) { Admin } @else { User } </small>
+      }
+    </div>
+    <nav>
+      <ul>
+        <li><a routerLink="/cars" routerLinkActive="active">Cars</a></li>
+        @if (auth.isAdmin()) {
+        <li>
+          <a routerLink="/manage-cars" routerLinkActive="active">Manage Cars</a>
+        </li>
+        } @if (!auth.isLoggedIn()) {
+        <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+        } @if (auth.isLoggedIn() && !auth.isAdmin()) {
+        <li>
+          <a routerLink="/favorites" class="favorites-link">Favorites @if (favoritesService.favoriteCount() > 0) 
+            {
+            <span class="badge"> {{ favoritesService.favoriteCount() }} </span>
+            }
+          </a>
+        </li>
+        } @if (auth.isLoggedIn()) {
+        <li><a class="logout" (click)="auth.logout()">Logout</a></li>
+        }
+      </ul>
+    </nav>
+  </aside>
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

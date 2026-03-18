@@ -1,0 +1,113 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;   /* prevent body scrollbar, content scrolls internally */
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  width: 250px;
+  background: #1e293b;
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.profile {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.profile img {
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* make sure the ul inside the nav doesn't introduce extra padding
+   and set up the list items to behave as vertical links */
+nav {
+  display: flex;
+  flex-direction: column;
+}
+
+nav ul {
+  flex: 1;                /* allow the list to grow and let the last item push down */
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  margin-bottom: 15px;
+  background: #1e293b; /* keep sidebar items dark by default */
+  color: white;
+}
+
+/* last item (logout) should stick to the bottom of the nav list */
+nav ul li:last-child {
+  margin-top: auto;
+}
+
+nav a {
+  display: flex;             /* ensure the whole area of the link is clickable */
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;       /* prevent the text from breaking across lines */
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+nav a:hover,
+nav a.active {
+  background: #3cd5e9;
+}
+
+nav a:hover {
+  color: black;
+}
+
+nav a.active {
+  color: white;
+}
+
+.logout {
+  margin-top: auto;
+  color: #f87171;
+  cursor: pointer;
+}
+
+.content {
+  flex: 1;
+  padding: 30px;
+  min-height: 0;       /* allow flex child to shrink and enable internal scroll */
+  overflow-y: auto;    /* scroll only inside content area */
+}
+
+.li {
+  background: rgb(212, 63, 63);
+  color: rgb(250, 249, 249);
+} 
+
+.favorites-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge {
+  background: #e53935;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  padding: 2px 6px;
+  border-radius: 10px;
+
+  line-height: 1;
+}

@@ -1,0 +1,59 @@
+/* layout for favorites page */
+.cars {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.car-card {
+  background: #1e1e2f;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  color: #fff;
+  transition: transform 0.2s;
+}
+.car-card:hover {
+  transform: translateY(-3px);
+}
+
+.car-card .info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+.car-card .info .year {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.remove {
+  margin-top: 0.5rem;
+  align-self: flex-end;
+  background: #d9534f;
+  border: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.remove:hover {
+  background: #c9302c;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #ccc;
+  font-style: italic;
+}
+
+.price {
+  display: flex;
+  justify-content: end;
+  color: #9cbcc5;
+}
