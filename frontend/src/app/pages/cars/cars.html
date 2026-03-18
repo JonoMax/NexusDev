@@ -12,12 +12,14 @@
       <div class="card-content">
         <h4>{{car.make}} {{car.model}}</h4>
         <p class="year">{{car.year}}</p>
+        <p class="price">€{{car.price}}</p>
       </div>
       <div class="button-group">
         @if (!auth.isAdmin()) {
         <button
           class="favorite-btn"
           (click)="toggleFavorite(car.id)"
+          [attr.title]="!auth.isLoggedIn() ? 'Log in to save favorites ❤️' : null"
           title="Log in to favorite cars">
           @if (favoriteIds.has(car.id)) { ❤️ } @else { ♡ }
         </button>

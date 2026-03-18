@@ -13,6 +13,7 @@
       <div class="info">
         <h3>{{ car.make }} {{ car.model }}</h3>
         <p class="year">{{ car.year }}</p>
+        <p class="price">€{{ car.price }}</p>
       </div>
       <button class="remove" (click)="removeFavorite(car.id)">
         ❌ Remove

@@ -221,3 +221,9 @@ form input:focus, textarea:focus {
   box-shadow: 0 6px 18px rgba(0, 240, 255, 0.06), 0 0 20px rgba(0, 240, 255, 0.04) inset;
   transform: translateY(-2px);
 }
+
+.price {
+  display: flex;
+  justify-content: end;
+  color: #9cbcc5;
+}

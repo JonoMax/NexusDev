@@ -1,12 +1,19 @@
-import { Component, computed, inject, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  OnInit,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { CarService } from '../../services/car.service';
 import { Car } from '../../models/car.model';
 import { FormsModule } from '@angular/forms';
 import { signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FavoritesService } from '../../services/favorites/favorites';
+import { effect } from '@angular/core';
 
 @Component({
   selector: 'app-cars',
@@ -63,13 +70,27 @@ export class Cars implements OnInit {
   //Holds a temp copy of a car while it is being edited
   // If null, no car is currently in edit mode
   editingCar: Car | null = null;
-  
+
   @ViewChild('editSection') editSection?: ElementRef;
-  private http = inject(HttpClient);
   private router = inject(Router);
   auth = inject(AuthService);
   private favoritesService = inject(FavoritesService);
   favoriteIds = new Set<number>();
+
+  constructor() {
+  effect(() => {
+    const user = this.auth.user();
+
+    if (!user) {
+      this.favoriteIds.clear();
+      return;
+    }
+
+    this.favoritesService.getFavorites(user.id).subscribe((favorites) => {
+      this.favoriteIds = new Set(favorites.map((c) => c.id));
+    });
+  });
+}
 
   ngOnInit() {
     //start loading
@@ -85,14 +106,6 @@ export class Cars implements OnInit {
         this.isLoading.set(false);
       },
     });
-    // load favorites if logged in
-    const user = this.auth.user();
-
-    if (!user) return;
-
-    this.favoritesService.getFavorites(user.id).subscribe((favorites) => {
-      this.favoriteIds = new Set(favorites.map((c) => c.id));
-    });
   }
 
   deleteCar(id: number) {
@@ -105,10 +118,13 @@ export class Cars implements OnInit {
     // Clone the car to avoid mutating the list while the user edits
     this.editingCar = { ...car };
     console.log('Edit Car');
-    
+
     // Scroll to the edit form at the bottom
     setTimeout(() => {
-      this.editSection?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.editSection?.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
     }, 100);
   }
 
@@ -135,12 +151,12 @@ export class Cars implements OnInit {
     if (this.favoriteIds.has(carId)) {
       this.favoritesService.removeFavorite(carId, user.id).subscribe(() => {
         this.favoriteIds.delete(carId);
-        this.favoritesService.favoriteCount.update(c => c - 1);
+        this.favoritesService.favoriteCount.update((c) => c - 1);
       });
     } else {
       this.favoritesService.addFavorite(carId, user.id).subscribe(() => {
         this.favoriteIds.add(carId);
-        this.favoritesService.favoriteCount.update(c => c + 1);
+        this.favoritesService.favoriteCount.update((c) => c + 1);
       });
     }
   }
